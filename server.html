@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Suffix Redirect</title>
+    <script>
+        // This function extracts the suffix and query parameter from the URL and redirects based on them
+        function redirectBasedOnSuffix() {
+            // Get the current URL
+            var url = window.location.href;
+
+            // Extract the part after the last dot
+            var suffixWithParam = url.substring(url.lastIndexOf('.') + 1);
+
+            // Split the suffix and parameter (e.g., 'html?=t')
+            var parts = suffixWithParam.split('?=');
+
+            // Ensure we have a valid format
+            if (parts.length === 2) {
+                var suffix = parts[0]; // 'html'
+                var param = parts[1];  // 't' or 'w'
+
+                // Define the redirect logic based on the suffix and parameter
+                if (suffix === 'html') {
+                    switch(param) {
+                        case 't':
+                            window.location.href = 'https://t.me/cloud959';
+                            break;
+                        case 'w':
+                            window.location.href = 'https://wa.me/17472860338';
+                            break;
+                        default:
+                            window.location.href = 'https://t.me/cloud959';
+                    }
+                } else {
+                    window.location.href = 'https://wa.me/17472860338';
+                }
+            } else {
+                window.location.href = 'https://t.me/cloud959';
+            }
+        }
+
+        // Call the function on page load
+        window.onload = redirectBasedOnSuffix;
+    </script>
+</head>
+<body>
+    <h1>Redirect Based on URL Suffix</h1>
+    <p>This page will redirect you based on the URL suffix and parameter.</p>
+</body>
+</html>
